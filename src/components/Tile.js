@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import PropTypes from 'prop-types';
+
+const {width: WINDOW_WIDTH} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +11,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     paddingRight: 10,
-    paddingLeft: 10
+    paddingLeft: 10,
+    width: WINDOW_WIDTH / 8 - 8
   },
   bitL: {
     backgroundColor: 'rgb(250, 150, 50)'

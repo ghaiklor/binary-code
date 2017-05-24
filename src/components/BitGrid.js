@@ -1,6 +1,15 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import BitNumber from '../components/BitNumber';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'stretch'
+  }
+});
 
 export class BitGrid extends React.Component {
   componentDidMount() {
@@ -8,8 +17,15 @@ export class BitGrid extends React.Component {
   }
 
   onPress(numberIndex, bitIndex) {
-    console.log(numberIndex);
-    console.log(bitIndex);
+    const {field} = this.state;
+    const number = field[numberIndex];
+    const bits = parseInt(number, 10).toString(2).padStart(8, '0').split('').map(Number);
+
+    bits[bitIndex] = 1;
+
+    field[numberIndex] = parseInt(bits.join(''), 10);
+
+    this.setState({field});
   }
 
   scheduleNextNumber() {
@@ -18,6 +34,8 @@ export class BitGrid extends React.Component {
     field.push(Math.floor(Math.random() * 255));
 
     this.setState({field});
+
+    setTimeout(this.scheduleNextNumber.bind(this), 3000);
   }
 
   state = {
@@ -26,13 +44,9 @@ export class BitGrid extends React.Component {
 
   render() {
     const {field} = this.state;
-    const numbers = field.map((number, i) => <BitNumber number={number} onPress={this.onPress.bind(this, i)}/>);
+    const numbers = field.map((number, i) => <BitNumber key={i} number={number} onPress={this.onPress.bind(this, i)}/>);
 
-    return (
-      <View>
-        {numbers}
-      </View>
-    );
+    return <View style={styles.container}>{numbers}</View>;
   }
 }
 
