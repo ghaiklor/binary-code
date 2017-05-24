@@ -3,7 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {addBitNumber} from './actions';
-import BitGrid from "./components/BitGrid";
+import BitGrid from './components/BitGrid';
+import NumbersToComplete from './components/NumbersToComplete';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    paddingTop: 50
   }
 });
 
@@ -29,6 +31,7 @@ export class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <NumbersToComplete/>
         <BitGrid/>
       </View>
     );
