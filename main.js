@@ -1,9 +1,10 @@
 import Expo from 'expo';
 import React from 'react';
+import App from './src/App';
 
 class BinaryCode extends React.Component {
   render() {
-    return null;
+    return <App/>;
   }
 }
 
