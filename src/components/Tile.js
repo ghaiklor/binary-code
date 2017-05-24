@@ -42,7 +42,7 @@ export class Tile extends React.Component {
 
 Tile.propTypes = {
   bit: PropTypes.oneOf([0, 1]).isRequired,
-  onPress: PropTypes.func
+  onPress: PropTypes.func.isRequired
 };
 
 export default Tile;

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 export class BitNumber extends React.Component {
   render() {
     const {number, onPress} = this.props;
-    const bits = parseInt(number, 10).toString(2).padStart(8, '0').split('').map(Number);
+    const bits = number.toString(2).padStart(8, '0').split('').map(Number);
     const tiles = bits.map((bit, i) => <Tile key={i} bit={bit} onPress={() => onPress(i)}/>);
 
     return <View style={styles.container}>{tiles}</View>;
