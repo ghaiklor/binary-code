@@ -1,0 +1,50 @@
+{
+  "name": "binary-code",
+  "version": "1.0.0",
+  "description": "A fun way to learn binary numbers, you'll be converting eight-digit binary numbers to decimals in your head!",
+  "author": "ghaiklor",
+  "license": "GPL-3.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "build": "npm run build:android && npm run build:ios",
+    "build:android": "exp build:android",
+    "build:ios": "exp build:ios",
+    "lint": "eslint . --ext .js",
+    "login": "exp login",
+    "start": "exp start",
+    "status": "exp build:status",
+    "test": "jest"
+  },
+  "dependencies": {
+    "expo": "17.0.0",
+    "prop-types": "15.5.10",
+    "react": "16.0.0-alpha.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
+    "react-redux": "5.0.5",
+    "redux": "3.6.0",
+    "redux-persist": "4.8.0",
+    "redux-thunk": "2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "7.2.3",
+    "chai": "3.5.0",
+    "eslint": "3.19.0",
+    "eslint-config-react": "1.1.7",
+    "eslint-plugin-react": "7.0.1",
+    "exp": "41.0.0",
+    "jest-expo": "1.0.1",
+    "pre-commit": "1.2.2",
+    "react-test-renderer": "15.5.4",
+    "sinon": "2.2.0"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "pre-commit": {
+    "run": [
+      "lint",
+      "test"
+    ]
+  }
+}

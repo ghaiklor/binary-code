@@ -1,0 +1,28 @@
+{
+  "name": "Binary Code",
+  "description": "A fun way to learn binary numbers, you'll be converting eight-digit binary numbers to decimals in your head!",
+  "slug": "binary-code",
+  "privacy": "public",
+  "sdkVersion": "17.0.0",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "primaryColor": "#CCCCCC",
+  "icon": "./assets/icons/app.png",
+  "loading": {
+    "icon": "./assets/icons/app.png",
+    "hideExponentText": true
+  },
+  "packagerOpts": {
+    "assetExts": [
+      "ttf",
+      "mp4"
+    ]
+  },
+  "ios": {
+    "bundleIdentifier": "org.ghaiklor.binarycode",
+    "supportsTablet": true
+  },
+  "android": {
+    "package": "org.ghaiklor.binarycode"
+  }
+}
