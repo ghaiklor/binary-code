@@ -1,13 +1,15 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 15,
-    padding: 10
+    borderRadius: 8,
+    padding: 8,
+    paddingRight: 10,
+    paddingLeft: 10
   },
   bitL: {
     backgroundColor: 'rgb(250, 150, 50)'
@@ -18,25 +20,26 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 30
   }
 });
 
 export class Tile extends React.Component {
   render() {
-    const {bit} = this.props;
+    const {bit, onPress} = this.props;
     const isL = bit === 0;
+    const viewStyle = [styles.container, isL ? styles.bitL : styles.bitH];
+    const text = <Text style={styles.text}>{bit}</Text>;
+    const view = <View style={viewStyle}>{text}</View>;
+    const touchableView = <TouchableOpacity onPress={onPress}>{view}</TouchableOpacity>;
 
-    return (
-      <View style={[styles.container, isL ? styles.bitL : styles.bitH]}>
-        <Text style={styles.text}>{bit}</Text>
-      </View>
-    );
+    return onPress ? touchableView : view;
   }
 }
 
 Tile.propTypes = {
-  bit: PropTypes.oneOf([0, 1]).isRequired
+  bit: PropTypes.oneOf([0, 1]).isRequired,
+  onPress: PropTypes.func
 };
 
 export default Tile;

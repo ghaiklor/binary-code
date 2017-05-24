@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import BitNumber from './components/BitNumber';
-import BitRuler from './components/BitRuler';
+import BitGrid from "./components/BitGrid";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +16,7 @@ export class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <BitNumber number={20}/>
-        <BitNumber number={45}/>
-        <BitNumber number={10}/>
-        <BitNumber number={1}/>
-        <BitRuler/>
+        <BitGrid/>
       </View>
     );
   }
