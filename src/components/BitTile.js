@@ -8,11 +8,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
-    padding: 8,
-    paddingRight: 10,
-    paddingLeft: 10,
-    width: WINDOW_WIDTH / 8 - 8
+    borderRadius: 5,
+    width: WINDOW_WIDTH / 8 - 50 / 8 - 4,
+    height: 50,
+    margin: 1
   },
   bitL: {
     backgroundColor: 'rgb(250, 150, 50)'
@@ -23,11 +22,11 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 30
+    fontSize: 20
   }
 });
 
-export class Tile extends React.Component {
+export class BitTile extends React.Component {
   render() {
     const {bit, onPress} = this.props;
     const isL = bit === 0;
@@ -40,9 +39,9 @@ export class Tile extends React.Component {
   }
 }
 
-Tile.propTypes = {
+BitTile.propTypes = {
   bit: PropTypes.oneOf([0, 1]).isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func
 };
 
-export default Tile;
+export default BitTile;

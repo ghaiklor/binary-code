@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {pressBit} from '../actions';
 import BitNumber from '../components/BitNumber';
+import BitExpect from '../components/BitExpect';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,11 +12,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'stretch'
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 });
 
 const mapStateToProps = state => ({
-  field: state.field
+  bits: state.bits,
+  numbers: state.numbers
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,16 +30,30 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export class BitGrid extends React.Component {
-  render() {
-    const {field, onPress} = this.props;
-    const numbers = field.map((number, i) => <BitNumber key={i} number={number} onPress={onPress.bind(this, i)}/>);
+  makeRow(bitNumber, bitNumberIndex) {
+    const {numbers, onPress} = this.props;
 
-    return <View style={styles.container}>{numbers}</View>;
+    return (
+      <View key={bitNumberIndex} style={styles.rowContainer}>
+        <BitNumber number={bitNumber} onPress={onPress.bind(this, bitNumberIndex)}/>
+        <BitExpect number={numbers[bitNumberIndex]}/>
+      </View>
+    );
+  }
+
+  render() {
+    const {bits} = this.props;
+    const rows = bits.map(this.makeRow.bind(this));
+
+    return (
+      <View style={styles.container}>{rows}</View>
+    );
   }
 }
 
 BitGrid.propTypes = {
-  field: PropTypes.array.isRequired,
+  bits: PropTypes.array.isRequired,
+  numbers: PropTypes.array.isRequired,
   onPress: PropTypes.func.isRequired
 };
 
