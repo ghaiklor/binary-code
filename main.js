@@ -1,11 +1,12 @@
 import Expo from 'expo';
 import React from 'react';
-import {createStore} from 'redux';
+import {compose, applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 import reducer from './src/reducers';
 import App from './src/App';
 
-const store = createStore(reducer);
+const store = createStore(reducer, undefined, compose(applyMiddleware(thunk)));
 
 class BinaryCode extends React.Component {
   render() {

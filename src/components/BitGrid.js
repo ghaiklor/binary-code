@@ -46,7 +46,7 @@ export class BitGrid extends React.Component {
     const rows = bits.map(this.makeRow.bind(this));
 
     return (
-      <View style={styles.container}>{rows}</View>
+      <View style={styles.container}>{rows.reverse()}</View>
     );
   }
 }

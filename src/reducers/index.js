@@ -1,38 +1,57 @@
 import * as TYPES from '../actions/types';
+import BIT_TOGGLERS from '../constants/bitTogglers';
 
 const initialState = {
   score: 0,
-  field: [],
-  numbersToComplete: []
+  level: 1,
+  bits: [],
+  numbers: [],
+  isPlaying: false
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case TYPES.PRESS_BIT: {
-      const field = state.field.slice(0);
-      const numbersToComplete = state.numbersToComplete.slice(0);
       const {numberIndex, bitIndex} = action;
-      const number = field[numberIndex];
-      const binaryArray = number.toString(2).padStart(8, '0').split('').map(Number);
-      const currentBit = binaryArray[bitIndex];
+      const bits = state.bits.slice(0);
+      const numbers = state.numbers.slice(0);
 
-      binaryArray[bitIndex] = currentBit === 0 ? 1 : 0;
+      bits[numberIndex] ^= BIT_TOGGLERS[bitIndex];
 
-      field[numberIndex] = parseInt(binaryArray.join(''), 2);
+      if (bits[numberIndex] === numbers[numberIndex]) {
+        const score = state.score + 1;
 
-      const newField = field.filter(number => numbersToComplete.indexOf(number) !== -1);
-      const newNumbersToComplete = numbersToComplete.filter(number => field.indexOf(number) !== -1);
+        bits.splice(numberIndex, 1);
+        numbers.splice(numberIndex, 1);
 
-      return {...state, field: newField, numbersToComplete: newNumbersToComplete};
+        return {...state, score, bits, numbers};
+      }
+
+      return {...state, bits, numbers};
     }
 
     case TYPES.ADD_BIT_NUMBER: {
-      const randomBitNumber = Math.floor(Math.random() * 255);
-      const randomCompleteNumber = Math.floor(Math.random() * 255);
-      const field = [...state.field, randomBitNumber];
-      const numbersToComplete = [...state.numbersToComplete, randomCompleteNumber];
+      const {score} = state;
+      const level = score % 5 === 0 ? state.level + 1 : state.level;
+      const randomNumber = Math.min(Math.floor(Math.random() * Math.pow(2, level)) + 1, 255);
+      const bits = [...state.bits, 0];
+      const numbers = [...state.numbers, randomNumber];
 
-      return {...state, field, numbersToComplete};
+      return {...state, level, bits, numbers};
+    }
+
+    case TYPES.START_GAME: {
+      const score = 0;
+      const level = 1;
+      const bits = [0];
+      const numbers = [1];
+      const isPlaying = true;
+
+      return {...state, score, level, bits, numbers, isPlaying};
+    }
+
+    case TYPES.GAME_OVER: {
+      return {...state, isPlaying: false};
     }
 
     default: {
