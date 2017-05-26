@@ -19,25 +19,21 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  newGame: () => dispatch(startGame())
+  onPress: () => dispatch(startGame())
 });
 
 export class NewGame extends React.Component {
   render() {
-    const {newGame} = this.props;
+    const {onPress} = this.props;
+    const text = <Text style={styles.text}>NEW GAME</Text>;
+    const view = <View style={styles.container}>{text}</View>;
 
-    return (
-      <TouchableOpacity onPress={newGame}>
-        <View style={styles.container}>
-          <Text style={styles.text}>NEW GAME</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    return <TouchableOpacity onPress={onPress}>{view}</TouchableOpacity>;
   }
 }
 
 NewGame.propTypes = {
-  newGame: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(NewGame);

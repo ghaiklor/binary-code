@@ -32,22 +32,17 @@ const mapDispatchToProps = dispatch => ({
 export class BitGrid extends React.Component {
   makeRow(bitNumber, bitNumberIndex) {
     const {numbers, onPress} = this.props;
+    const bitNumberTile = <BitNumber number={bitNumber} onPress={onPress.bind(this, bitNumberIndex)}/>;
+    const bitExpectTile = <BitExpect number={numbers[bitNumberIndex]}/>;
 
-    return (
-      <View key={bitNumberIndex} style={styles.rowContainer}>
-        <BitNumber number={bitNumber} onPress={onPress.bind(this, bitNumberIndex)}/>
-        <BitExpect number={numbers[bitNumberIndex]}/>
-      </View>
-    );
+    return <View key={bitNumberIndex} style={styles.rowContainer}>{bitNumberTile}{bitExpectTile}</View>;
   }
 
   render() {
     const {bits} = this.props;
     const rows = bits.map(this.makeRow.bind(this));
 
-    return (
-      <View style={styles.container}>{rows.reverse()}</View>
-    );
+    return <View style={styles.container}>{rows.reverse()}</View>;
   }
 }
 

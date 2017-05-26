@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import PropTypes from 'prop-types';
 import BitGrid from './components/BitGrid';
 import BitRuler from './components/BitRuler';
 import Score from './components/Score';
@@ -29,9 +28,5 @@ export class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  addBitNumber: PropTypes.func
-};
 
 export default App;
