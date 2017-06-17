@@ -29,7 +29,6 @@ export function addBitNumber() {
     const {bits} = getState();
 
     if (bits.length > 8) return dispatch(gameOver());
-    if (bits.length <= 8) return setTimeout(() => dispatch({type: TYPES.ADD_BIT_NUMBER}), 3000);
   };
 }
 

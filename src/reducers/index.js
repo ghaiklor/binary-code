@@ -6,7 +6,7 @@ const initialState = {
   level: 1,
   bits: [],
   numbers: [],
-  isPlaying: false
+  isPlaying: true
 };
 
 export default function (state = initialState, action) {
@@ -43,8 +43,8 @@ export default function (state = initialState, action) {
     case TYPES.START_GAME: {
       const score = 0;
       const level = 1;
-      const bits = [0];
-      const numbers = [1];
+      const bits = [];
+      const numbers = [];
       const isPlaying = true;
 
       return {...state, score, level, bits, numbers, isPlaying};
