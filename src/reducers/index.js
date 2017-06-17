@@ -2,10 +2,10 @@ import * as TYPES from '../actions/types';
 import BIT_TOGGLERS from '../constants/bitTogglers';
 
 const initialState = {
-  score: 0,
+  score: 1,
   level: 1,
-  bits: [],
-  numbers: [],
+  bits: [0],
+  numbers: [1],
   isPlaying: true
 };
 
@@ -41,7 +41,7 @@ export default function (state = initialState, action) {
     }
 
     case TYPES.START_GAME: {
-      const score = 0;
+      const score = 1;
       const level = 1;
       const bits = [];
       const numbers = [];
@@ -51,7 +51,7 @@ export default function (state = initialState, action) {
     }
 
     case TYPES.GAME_OVER: {
-      return {...state, isPlaying: false};
+      return {...state, bits: [], numbers: [], isPlaying: false};
     }
 
     default: {
